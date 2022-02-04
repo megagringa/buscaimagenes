@@ -1,9 +1,9 @@
 # #buscaimagenes
 
-### [Administrador de citas para pacientes](https://megagringa.github.io/buscaimagenes/index.html)
+### [Buscador de imágenes](https://megagringa.github.io/buscaimagenes/index.html)
 
-Proyecto: trabajado desde Udemy - El proyecto viene con una estructura armada en html y css - 
-         Solo se implementa js. 
+Proyecto que busca imágenes - El proyecto viene con una estructura armada en html y css - 
+         Solo se implementa js para desarrollar y aprender. 
 
 
 ## Lenguajes y tecnologías.
@@ -12,9 +12,3 @@ Proyecto: trabajado desde Udemy - El proyecto viene con una estructura armada en
 - CSS3
 - Framework: Tailwind
 - JS(Javascript)
-
-- **Udemy**:
-    - Proyecto de práctica para mejorar skills.
-    
-- **Proyecto**:
-    - Buscador de imágenes.
