@@ -48,25 +48,23 @@ function mostrarAlerta(mensaje) {
     }
 }
 
+3961091175
 
-// Busca las imagenes en una API
-function buscarImagenes() {
+// NUEVO: Busca las imagenes en una API
+async function buscarImagenes() {
     const terminoBusqueda = document.querySelector('#termino').value;
 
     const key = '1732750-d45b5378879d1e877cd1d35a6';
     const url = `https://pixabay.com/api/?key=${key}&q=${terminoBusqueda}&per_page=30&page=${paginaActual}`;
 
-    fetch(url) 
-        .then(respuesta => respuesta.json())
-        .then( resultado => {
-            totalPaginas = calcularPaginas(resultado.totalHits);
+   const respuesta = await fetch(url);
+   const resultado = await respuesta.json()
+   
+   totalPaginas = calcularPaginas(resultado.totalHits);
 
-            // console.log(totalPaginas)
-
-            mostrarImagenes(resultado.hits);
-        });
-
-
+   // console.log(totalPaginas)
+   mostrarImagenes(resultado.hits);
+   
 }
 
 function mostrarImagenes(imagenes, paginas ) {
@@ -86,9 +84,7 @@ function mostrarImagenes(imagenes, paginas ) {
                         <p class="card-text">${likes} Me Gusta</p>
                         <p class="card-text">${views} Vistas </p>
         
-                        <a href=${largeImageURL} 
-                        rel="noopener noreferrer" 
-                        target="_blank" class="bg-blue-800 w-full p-1 block mt-5 rounded text-center font-bold uppercase hover:bg-blue-500 text-white">Ver Imagen</a>
+                        <a href=${largeImageURL} target="_blank" class="bg-blue-800 w-full p-1 block mt-5 rounded text-center font-bold uppercase hover:bg-blue-500 text-white">Ver Imagen</a>
                     </div>
                 </div>
             </div>
@@ -97,14 +93,14 @@ function mostrarImagenes(imagenes, paginas ) {
 
 
     if(!iteradorSiguiente) {
-        mostrarPaginacion();
+        crearPaginacion();
     }
  
 }
 
-function mostrarPaginacion() {
+function crearPaginacion() {
     // recorrer el iterador
-    iteradorSiguiente = crearPaginacion(totalPaginas);
+    iteradorSiguiente = paginaSiguiente(totalPaginas);
     while( true ) {
         const { value, done } = iteradorSiguiente.next();
 
@@ -126,7 +122,7 @@ function calcularPaginas(total) {
 
 
 // Crear el generador
-function *crearPaginacion(total) {
+function *paginaSiguiente(total) {
     console.log(total);
     for( let i = 1; i <= total; i++) {
         yield i;
